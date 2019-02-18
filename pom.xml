@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<modules>
+		<module>parser_core</module>
+		<module>parser_cli</module>
+	</modules>
+
+	<groupId>com.flaxel</groupId>
+	<artifactId>parser</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>parser</name>
+	<url>https://github.com/flaxel/parser</url>
+	<inceptionYear>2019</inceptionYear>
+	<description>simple interface and cli for javaparser</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<java.version>11</java.version>
+
+		<lombok.version>1.18.4</lombok.version>
+
+		<junit.jupiter.version>5.4.0</junit.jupiter.version>
+		<junit.platform.version>1.4.0</junit.platform.version>
+
+		<maven.compiler.version>3.7.0</maven.compiler.version>
+		<maven.surefire.version>2.22.1</maven.surefire.version>
+		<maven.jar.version>3.0.2</maven.jar.version>
+		<maven.shade.version>2.3</maven.shade.version>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>manual</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Falk Puschner</name>
+			<id>flaxel</id>
+			<email>falk.puschner@arcor.de</email>
+			<url>https://github.com/flaxel</url>
+		</developer>
+	</developers>
+
+	<contributors>
+		<contributor>
+			<name>Frank Grimm</name>
+			<email>Frank.Grimm@fh-zwickau.de</email>
+			<url>https://github.com/fgr</url>
+		</contributor>
+	</contributors>
+
+	<scm>
+		<url>https://github.com/flaxel/parser</url>
+		<tag>HEAD</tag>
+		<connection>scm:https://github.com/flaxel/parser.git</connection>
+		<developerConnection>scm:https://github.com/flaxel/parser.git</developerConnection>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub Issue Tracker</system>
+		<url>https://github.com/flaxel/parser/issues</url>
+	</issueManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${junit.jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-params</artifactId>
+				<version>${junit.jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${junit.jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-launcher</artifactId>
+				<version>${junit.platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven.jar.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>${maven.shade.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
