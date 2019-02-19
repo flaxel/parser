@@ -25,8 +25,6 @@
 
 		<java.version>11</java.version>
 
-		<lombok.version>1.18.4</lombok.version>
-
 		<junit.jupiter.version>5.4.0</junit.jupiter.version>
 		<junit.platform.version>1.4.0</junit.platform.version>
 
@@ -76,13 +74,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${lombok.version}</version>
-				<scope>provided</scope>
-			</dependency>
-
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-api</artifactId>
