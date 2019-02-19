@@ -21,7 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<javaparser.version>3.11.0</javaparser.version>
+		<javaparser.version>3.13.0</javaparser.version>
 	</properties>
 
 	<licenses>
