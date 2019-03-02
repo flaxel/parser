@@ -27,7 +27,7 @@ import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.printer.PrettyPrinter;
 
 import static com.github.javaparser.utils.Utils.assertNotNull;
@@ -41,9 +41,9 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
 public class Generator {
 
 	/**
-	 * printer to create a string from a compilation unit
+	 * printer to create a string from a node
 	 */
-	private static Function<CompilationUnit, String> printer = new PrettyPrinter()::print;
+	private static Function<Node, String> printer = new PrettyPrinter()::print;
 
 	/**
 	 * default charset for encoding
@@ -51,23 +51,23 @@ public class Generator {
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
 	/**
-	 * Set a new printer to create the java code from a {@link CompilationUnit}.
+	 * Set a new printer to create the java code from a {@link Node}.
 	 * 
 	 * @param printer
 	 *            new printer
 	 * @since 1.0.0
 	 */
-	public static void setPrinter(Function<CompilationUnit, String> printer) {
+	public static void setPrinter(Function<Node, String> printer) {
 		Generator.printer = assertNotNull(printer);
 	}
 
 	/**
-	 * Get the current printer to create a string from a {@link CompilationUnit}.
+	 * Get the current printer to create a string from a {@link Node}.
 	 * 
 	 * @return current printer
 	 * @since 1.0.0
 	 */
-	public static Function<CompilationUnit, String> getPrinter() {
+	public static Function<Node, String> getPrinter() {
 		return printer;
 	}
 
@@ -79,9 +79,9 @@ public class Generator {
 	 * @return generated string from the printer
 	 * @since 1.0.0
 	 */
-	public static String generate(Supplier<CompilationUnit> supplier) {
-		CompilationUnit unit = assertNotNull(supplier).get();
-		return printer.apply(unit);
+	public static String generate(Supplier<? extends Node> supplier) {
+		Node node = assertNotNull(supplier).get();
+		return printer.apply(node);
 	}
 
 	/**
@@ -94,9 +94,9 @@ public class Generator {
 	 *             if the callable was not executable
 	 * @since 1.0.0
 	 */
-	public static String generate(Callable<CompilationUnit> callable) throws Exception {
-		CompilationUnit unit = assertNotNull(callable).call();
-		return printer.apply(unit);
+	public static String generate(Callable<? extends Node> callable) throws Exception {
+		Node node = assertNotNull(callable).call();
+		return printer.apply(node);
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class Generator {
 	 *             if an i/o error occurred while the file is written
 	 * @since 1.0.0
 	 */
-	public static String generate(Supplier<CompilationUnit> supplier, File file, OpenOption... options)
+	public static String generate(Supplier<? extends Node> supplier, File file, OpenOption... options)
 			throws IOException {
 		return generate(supplier, file, DEFAULT_CHARSET, options);
 	}
@@ -137,7 +137,7 @@ public class Generator {
 	 *             callback was not executable
 	 * @since 1.0.0
 	 */
-	public static String generate(Callable<CompilationUnit> callable, File file, OpenOption... options)
+	public static String generate(Callable<? extends Node> callable, File file, OpenOption... options)
 			throws Exception {
 		return generate(callable, file, DEFAULT_CHARSET, options);
 	}
@@ -158,7 +158,7 @@ public class Generator {
 	 *             if an i/o error occurred while the file is written
 	 * @since 1.0.0
 	 */
-	public static String generate(Supplier<CompilationUnit> supplier, Path path, OpenOption... options)
+	public static String generate(Supplier<? extends Node> supplier, Path path, OpenOption... options)
 			throws IOException {
 		return generate(supplier, path, DEFAULT_CHARSET, options);
 	}
@@ -180,7 +180,7 @@ public class Generator {
 	 *             callback was not executable
 	 * @since 1.0.0
 	 */
-	public static String generate(Callable<CompilationUnit> callable, Path path, OpenOption... options)
+	public static String generate(Callable<? extends Node> callable, Path path, OpenOption... options)
 			throws Exception {
 		return generate(callable, path, DEFAULT_CHARSET, options);
 	}
@@ -202,7 +202,7 @@ public class Generator {
 	 *             if an i/o error occurred while the file is written
 	 * @since 1.0.0
 	 */
-	public static String generate(Supplier<CompilationUnit> supplier, File file, Charset charset, OpenOption... options)
+	public static String generate(Supplier<? extends Node> supplier, File file, Charset charset, OpenOption... options)
 			throws IOException {
 		return generate(supplier, assertNotNull(file).toPath(), charset, options);
 	}
@@ -225,7 +225,7 @@ public class Generator {
 	 *             callback was not executable
 	 * @since 1.0.0
 	 */
-	public static String generate(Callable<CompilationUnit> callable, File file, Charset charset, OpenOption... options)
+	public static String generate(Callable<? extends Node> callable, File file, Charset charset, OpenOption... options)
 			throws Exception {
 		return generate(callable, assertNotNull(file).toPath(), charset, options);
 	}
@@ -247,7 +247,7 @@ public class Generator {
 	 *             if an i/o error occurred while the file is written
 	 * @since 1.0.0
 	 */
-	public static String generate(Supplier<CompilationUnit> supplier, Path path, Charset charset, OpenOption... options)
+	public static String generate(Supplier<? extends Node> supplier, Path path, Charset charset, OpenOption... options)
 			throws IOException {
 		String code = generate(supplier);
 		Files.writeString(path, code, charset, options);
@@ -272,7 +272,7 @@ public class Generator {
 	 *             callback was not executable
 	 * @since 1.0.0
 	 */
-	public static String generate(Callable<CompilationUnit> callable, Path path, Charset charset, OpenOption... options)
+	public static String generate(Callable<? extends Node> callable, Path path, Charset charset, OpenOption... options)
 			throws Exception {
 		String code = generate(callable);
 		Files.writeString(path, code, charset, options);

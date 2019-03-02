@@ -24,7 +24,7 @@ import java.util.function.Function;
 
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
-import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.symbolsolver.JavaSymbolSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.JarTypeSolver;
@@ -113,13 +113,13 @@ public class Parser {
 	}
 
 	/**
-	 * Set a new printer to create a string from a {@link CompilationUnit}
+	 * Set a new printer to create a string from a {@link Node}
 	 * 
 	 * @param printer
 	 *            new printer
 	 * @since 1.0.0
 	 */
-	public static void setPrinter(Function<CompilationUnit, String> printer) {
+	public static void setPrinter(Function<Node, String> printer) {
 		assertNotNull(printer);
 
 		Generator.setPrinter(printer);

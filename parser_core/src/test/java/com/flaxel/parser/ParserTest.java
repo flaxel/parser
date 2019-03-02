@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
-import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,7 +19,7 @@ public class ParserTest {
 
 	@Test
 	public void testSetPrinter() {
-		Function<CompilationUnit, String> printer = (unit) -> "test";
+		Function<Node, String> printer = (node) -> "test";
 		Parser.setPrinter(printer);
 		assertEquals(printer, Generator.getPrinter());
 	}
