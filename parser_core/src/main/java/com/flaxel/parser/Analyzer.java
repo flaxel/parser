@@ -24,7 +24,6 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import com.github.javaparser.JavaParser;
@@ -65,11 +64,6 @@ public class Analyzer {
 	 * default unit filter
 	 */
 	public static final Predicate<CompilationUnit> DEFAULT_UNIT_FILTER = (unit) -> true;
-
-	/**
-	 * default problem handler
-	 */
-	public static final Consumer<List<Problem>> DEFAULT_PROBLEM_HANDLER = (problems) -> {};
 
 	/**
 	 * default problem handler with file
