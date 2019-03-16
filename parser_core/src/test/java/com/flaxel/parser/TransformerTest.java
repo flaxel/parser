@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import com.flaxel.parser.utils.TestUtils;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
 
@@ -33,7 +33,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformFileNull() {
 		File nullFile = null;
-		File file = new File(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.txt").getFile());
+		File file = TestUtils.getInternFile("Transformed.txt");
 
 		assertThrows(AssertionError.class, () -> Transformer.transformFile(file, Transformer.DEFAULT_CHARSET,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, null));
@@ -54,6 +54,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformFileNotExist() throws FileNotFoundException {
 		File file = new File("test_transform.txt");
+
 		assertThrows(FileNotFoundException.class, () -> Transformer.transformFile(file, Transformer.DEFAULT_CHARSET,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, DEFAULT_FILE_UNIT_HANDLER));
 		assertThrows(FileNotFoundException.class, () -> Transformer.transformFile(file,
@@ -66,6 +67,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformFileNotFile() {
 		File folder = new File("src");
+
 		assertThrows(FileNotFoundException.class, () -> Transformer.transformFile(folder, Transformer.DEFAULT_CHARSET,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, DEFAULT_FILE_UNIT_HANDLER));
 		assertThrows(FileNotFoundException.class, () -> Transformer.transformFile(folder,
@@ -77,22 +79,22 @@ public class TransformerTest {
 
 	@Test
 	public void testTransformFile() throws FileNotFoundException {
-		File file = new File(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.txt").getFile());
+		File file = TestUtils.getInternFile("Transformed.txt");
+
 		Transformer.transformFile(file, Transformer.DEFAULT_CHARSET, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,
 				DEFAULT_FILE_UNIT_HANDLER);
 		Transformer.transformFile(file, Transformer.DEFAULT_FILE_PROBLEM_HANDLER, DEFAULT_FILE_UNIT_HANDLER);
 		Transformer.transformFile(file, Transformer.DEFAULT_CHARSET, DEFAULT_FILE_UNIT_HANDLER);
 		Transformer.transformFile(file, DEFAULT_FILE_UNIT_HANDLER);
 
-		File nonFile = new File(
-				getClass().getClassLoader().getResource("com/flaxel/parser/NoTransformed.txt").getFile());
+		File nonFile = TestUtils.getInternFile("NoTransformed.txt");
 		Transformer.transformFile(nonFile, DEFAULT_FILE_UNIT_HANDLER);
 	}
 
 	@Test
 	public void testTransformPathNull() throws URISyntaxException {
 		Path nullPath = null;
-		Path path = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.txt").toURI());
+		Path path = TestUtils.getInternPath("Transformed.txt");
 
 		assertThrows(AssertionError.class, () -> Transformer.transformFile(path, Transformer.DEFAULT_CHARSET,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, null));
@@ -113,6 +115,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformPathNotExist() {
 		Path path = new File("test_transform.txt").toPath();
+
 		assertThrows(FileNotFoundException.class, () -> Transformer.transformFile(path, Transformer.DEFAULT_CHARSET,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, DEFAULT_FILE_UNIT_HANDLER));
 		assertThrows(FileNotFoundException.class, () -> Transformer.transformFile(path,
@@ -125,6 +128,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformPathNotFile() {
 		Path folder = new File("src").toPath();
+
 		assertThrows(FileNotFoundException.class, () -> Transformer.transformFile(folder, Transformer.DEFAULT_CHARSET,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, DEFAULT_FILE_UNIT_HANDLER));
 		assertThrows(FileNotFoundException.class, () -> Transformer.transformFile(folder,
@@ -136,22 +140,22 @@ public class TransformerTest {
 
 	@Test
 	public void testTransformPath() throws FileNotFoundException, URISyntaxException {
-		Path path = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.txt").toURI());
+		Path path = TestUtils.getInternPath("Transformed.txt");
+
 		Transformer.transformFile(path, Transformer.DEFAULT_CHARSET, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,
 				DEFAULT_FILE_UNIT_HANDLER);
 		Transformer.transformFile(path, Transformer.DEFAULT_FILE_PROBLEM_HANDLER, DEFAULT_FILE_UNIT_HANDLER);
 		Transformer.transformFile(path, Transformer.DEFAULT_CHARSET, DEFAULT_FILE_UNIT_HANDLER);
 		Transformer.transformFile(path, DEFAULT_FILE_UNIT_HANDLER);
 
-		Path nonPath = Paths
-				.get(getClass().getClassLoader().getResource("com/flaxel/parser/NoTransformed.txt").toURI());
+		Path nonPath = TestUtils.getInternPath("NoTransformed.txt");
 		Transformer.transformFile(nonPath, DEFAULT_FILE_UNIT_HANDLER);
 	}
 
 	@Test
 	public void testTransformZipFileNull() {
 		File nullFile = null;
-		File file = new File(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.zip").getFile());
+		File file = TestUtils.getInternFile("Transformed.zip");
 
 		assertThrows(AssertionError.class, () -> Transformer.transformZip(nullFile, Transformer.DEFAULT_FILE_FILTER,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER, DEFAULT_UNIT_HANDLER));
@@ -182,6 +186,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformZipFileNotExist() {
 		File file = new File("test_transform.zip");
+
 		assertThrows(NoSuchFileException.class, () -> Transformer.transformZip(file, Transformer.DEFAULT_FILE_FILTER,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER, DEFAULT_UNIT_HANDLER));
 		assertThrows(NoSuchFileException.class, () -> Transformer.transformZip(file, Transformer.DEFAULT_FILE_FILTER,
@@ -202,6 +207,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformZipFileNotFile() {
 		File folder = new File("src");
+
 		assertThrows(FileNotFoundException.class,
 				() -> Transformer.transformZip(folder, Transformer.DEFAULT_FILE_FILTER,
 						Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER,
@@ -223,7 +229,8 @@ public class TransformerTest {
 
 	@Test
 	public void testTransformZipFile() throws IOException {
-		File file = new File(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.zip").getFile());
+		File file = TestUtils.getInternFile("Transformed.zip");
+
 		Transformer.transformZip(file, Transformer.DEFAULT_FILE_FILTER, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,
 				Transformer.DEFAULT_UNIT_FILTER, DEFAULT_UNIT_HANDLER);
 		Transformer.transformZip(file, Transformer.DEFAULT_FILE_FILTER, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,
@@ -245,7 +252,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformZipPathNull() throws URISyntaxException {
 		Path nullPath = null;
-		Path path = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.zip").toURI());
+		Path path = TestUtils.getInternPath("Transformed.zip");
 
 		assertThrows(AssertionError.class, () -> Transformer.transformZip(nullPath, Transformer.DEFAULT_FILE_FILTER,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER, DEFAULT_UNIT_HANDLER));
@@ -276,6 +283,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformZipPathNotExist() {
 		Path path = new File("test_transform.zip").toPath();
+
 		assertThrows(NoSuchFileException.class, () -> Transformer.transformZip(path, Transformer.DEFAULT_FILE_FILTER,
 				Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER, DEFAULT_UNIT_HANDLER));
 		assertThrows(NoSuchFileException.class, () -> Transformer.transformZip(path, Transformer.DEFAULT_FILE_FILTER,
@@ -296,6 +304,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformZipPathNotFile() {
 		Path folder = new File("src").toPath();
+
 		assertThrows(FileNotFoundException.class,
 				() -> Transformer.transformZip(folder, Transformer.DEFAULT_FILE_FILTER,
 						Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER,
@@ -317,7 +326,8 @@ public class TransformerTest {
 
 	@Test
 	public void testTransformZipPath() throws IOException, URISyntaxException {
-		Path path = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.zip").toURI());
+		Path path = TestUtils.getInternPath("Transformed.zip");
+
 		Transformer.transformZip(path, Transformer.DEFAULT_FILE_FILTER, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,
 				Transformer.DEFAULT_UNIT_FILTER, DEFAULT_UNIT_HANDLER);
 		Transformer.transformZip(path, Transformer.DEFAULT_FILE_FILTER, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,
@@ -339,7 +349,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformFolderFileNull() {
 		File nullFolder = null;
-		File folder = new File(getClass().getClassLoader().getResource("com/flaxel/parser/transformed").getFile());
+		File folder = TestUtils.getInternFile("transformed");
 
 		assertThrows(AssertionError.class,
 				() -> Transformer.transformFolder(nullFolder, Transformer.DEFAULT_FILE_FILTER,
@@ -372,6 +382,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformFolderFileNotExist() {
 		File folder = new File("test_transform");
+
 		assertThrows(IllegalArgumentException.class,
 				() -> Transformer.transformFolder(folder, Transformer.DEFAULT_FILE_FILTER,
 						Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER,
@@ -394,7 +405,8 @@ public class TransformerTest {
 
 	@Test
 	public void testTransformFolderFileNotFolder() {
-		File folder = new File(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.zip").getFile());
+		File folder = TestUtils.getInternFile("Transformed.zip");
+
 		assertThrows(IllegalArgumentException.class,
 				() -> Transformer.transformFolder(folder, Transformer.DEFAULT_FILE_FILTER,
 						Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER,
@@ -417,7 +429,8 @@ public class TransformerTest {
 
 	@Test
 	public void testTransformFolderFile() throws IOException {
-		File folder = new File(getClass().getClassLoader().getResource("com/flaxel/parser/transformed").getFile());
+		File folder = TestUtils.getInternFile("transformed");
+
 		Transformer.transformFolder(folder, Transformer.DEFAULT_FILE_FILTER, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,
 				Transformer.DEFAULT_UNIT_FILTER, DEFAULT_FILE_UNIT_HANDLER);
 		Transformer.transformFolder(folder, Transformer.DEFAULT_FILE_FILTER, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,
@@ -439,7 +452,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformFolderPathNull() throws URISyntaxException {
 		Path nullFolder = null;
-		Path folder = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/transformed").toURI());
+		Path folder = TestUtils.getInternPath("transformed");
 
 		assertThrows(AssertionError.class, () -> Transformer.transformFolder(nullFolder,
 				Transformer.DEFAULT_FILE_FILTER, Transformer.DEFAULT_FILE_PROBLEM_HANDLER, DEFAULT_FILE_UNIT_HANDLER));
@@ -468,6 +481,7 @@ public class TransformerTest {
 	@Test
 	public void testTransformFolderPathNotExist() {
 		Path folder = new File("test_transform").toPath();
+
 		assertThrows(IllegalArgumentException.class,
 				() -> Transformer.transformFolder(folder, Transformer.DEFAULT_FILE_FILTER,
 						Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER,
@@ -490,7 +504,8 @@ public class TransformerTest {
 
 	@Test
 	public void testTransformFolderPathNotFolder() throws URISyntaxException {
-		Path folder = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/Transformed.zip").toURI());
+		Path folder = TestUtils.getInternPath("Transformed.zip");
+
 		assertThrows(IllegalArgumentException.class,
 				() -> Transformer.transformFolder(folder, Transformer.DEFAULT_FILE_FILTER,
 						Transformer.DEFAULT_FILE_PROBLEM_HANDLER, Transformer.DEFAULT_UNIT_FILTER,
@@ -513,7 +528,8 @@ public class TransformerTest {
 
 	@Test
 	public void testTransformFolderPath() throws IOException, URISyntaxException {
-		Path folder = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/transformed").toURI());
+		Path folder = TestUtils.getInternPath("transformed");
+
 		Transformer.transformFolder(folder, Transformer.DEFAULT_FILE_FILTER, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,
 				Transformer.DEFAULT_UNIT_FILTER, DEFAULT_FILE_UNIT_HANDLER);
 		Transformer.transformFolder(folder, Transformer.DEFAULT_FILE_FILTER, Transformer.DEFAULT_FILE_PROBLEM_HANDLER,

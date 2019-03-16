@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
+import com.flaxel.parser.utils.TestUtils;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.Node;
@@ -21,6 +21,7 @@ public class ParserTest {
 	public void testSetPrinter() {
 		Function<Node, String> printer = (node) -> "test";
 		Parser.setPrinter(printer);
+
 		assertEquals(printer, Generator.getPrinter());
 	}
 
@@ -28,6 +29,7 @@ public class ParserTest {
 	public void testSetConfiguration() {
 		ParserConfiguration configuration = new ParserConfiguration().setTabSize(3);
 		Parser.setConfiguration(configuration);
+
 		assertEquals(configuration, StaticJavaParser.getConfiguration());
 		assertEquals(configuration, Analyzer.getConfiguration());
 		assertEquals(configuration, Transformer.getConfiguration());
@@ -35,18 +37,18 @@ public class ParserTest {
 
 	@Test
 	public void testCreateTypeSolverFile() throws IOException {
-		File file = new File(getClass().getClassLoader().getResource("com/flaxel/parser/Analyzed.txt").getFile());
-		File folder = new File(getClass().getClassLoader().getResource("com/flaxel/parser/analyzed").getFile());
-		File archive = new File(getClass().getClassLoader().getResource("com/flaxel/parser/Analyzed.zip").getFile());
+		File file = TestUtils.getInternFile("Analyzed.txt");
+		File folder = TestUtils.getInternFile("analyzed");
+		File archive = TestUtils.getInternFile("Analyzed.zip");
 
 		Parser.createTypeSolver(file, folder, archive);
 	}
 
 	@Test
 	public void testCreateTypeSolverPath() throws URISyntaxException, IOException {
-		Path file = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/Analyzed.txt").toURI());
-		Path folder = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/analyzed").toURI());
-		Path archive = Paths.get(getClass().getClassLoader().getResource("com/flaxel/parser/Analyzed.zip").toURI());
+		Path file = TestUtils.getInternPath("Analyzed.txt");
+		Path folder = TestUtils.getInternPath("analyzed");
+		Path archive = TestUtils.getInternPath("Analyzed.zip");
 
 		Parser.createTypeSolver(file, folder, archive);
 	}

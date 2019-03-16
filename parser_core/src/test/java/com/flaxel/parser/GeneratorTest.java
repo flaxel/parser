@@ -2,7 +2,6 @@ package com.flaxel.parser;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
@@ -10,6 +9,7 @@ import java.util.function.Supplier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.flaxel.parser.utils.TestUtils;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.printer.PrettyPrinter;
 import com.github.javaparser.printer.lexicalpreservation.LexicalPreservingPrinter;
@@ -26,7 +26,7 @@ public class GeneratorTest {
 	private Callable<CompilationUnit> callable;
 
 	@BeforeEach
-	public void init() {
+	public void setup() {
 		CompilationUnit compilationUnit = new CompilationUnit();
 		compilationUnit.addClass("TestClass").setPublic(true);
 
@@ -39,23 +39,14 @@ public class GeneratorTest {
 	@Test
 	public void testSupplierGenerate() throws IOException {
 		String code = Generator.generate(supplier);
-
-		File file = new File(
-				getClass().getClassLoader().getResource("com/flaxel/parser/PrettyGenerated.txt").getFile());
-		String generatedCode = Files.readString(file.toPath());
-
-		assertEquals(generatedCode, code);
+		assertEquals(TestUtils.readInternFile("PrettyGenerated.txt"), code);
 	}
 
 	@Test
 	public void testCallableGenerate() throws Exception {
 		String code = Generator.generate(callable);
 
-		File file = new File(
-				getClass().getClassLoader().getResource("com/flaxel/parser/PrettyGenerated.txt").getFile());
-		String generatedCode = Files.readString(file.toPath());
-
-		assertEquals(generatedCode, code);
+		assertEquals(TestUtils.readInternFile("PrettyGenerated.txt"), code);
 	}
 
 	@Test
@@ -128,11 +119,7 @@ public class GeneratorTest {
 
 		String code = Generator.generate(supplier);
 
-		File file = new File(
-				getClass().getClassLoader().getResource("com/flaxel/parser/LexicalGenerated.txt").getFile());
-		String generatedCode = Files.readString(file.toPath());
-
-		assertEquals(generatedCode, code);
+		assertEquals(TestUtils.readInternFile("LexicalGenerated.txt"), code);
 	}
 
 	@Test
