@@ -135,6 +135,14 @@ public class ProblemOutputHandler implements BiConsumer<File, List<Problem>> {
 		}
 	}
 
+	/**
+	 * Create a message for a problem.
+	 * 
+	 * @param problem
+	 *            any problem
+	 * @return message
+	 * @since 1.0.0
+	 */
 	private String createMessage(Problem problem) {
 		if (fullStacktrace)
 			return String.format("%s%n%n%s%n%n", problem.toString(), separator.orElse(DEFAULT_SEPARTOR).repeat(20));
