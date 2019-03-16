@@ -1,0 +1,4 @@
+problems in the file: test.java
+
+(line 1,col 1) test message
+(line 1,col 1) test message2

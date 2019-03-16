@@ -1,0 +1,85 @@
+package com.flaxel.parser.handler;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import com.flaxel.parser.utils.TestUtils;
+import com.github.javaparser.JavaToken;
+import com.github.javaparser.Position;
+import com.github.javaparser.Problem;
+import com.github.javaparser.Range;
+import com.github.javaparser.TokenRange;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class ProblemOutputHandlerTest {
+
+	private File file;
+
+	private File problemsFile;
+
+	private List<Problem> problems;
+
+	@BeforeEach
+	public void setup() throws IOException {
+		this.problemsFile = new File("problems.txt");
+		this.problemsFile.deleteOnExit();
+		Files.deleteIfExists(this.problemsFile.toPath());
+
+		this.file = new File("test.java");
+
+		TokenRange range = new TokenRange(
+				new JavaToken(new Range(new Position(1, 1), new Position(2, 2)), 1, "test", null, null),
+				new JavaToken(new Range(new Position(1, 1), new Position(2, 2)), 1, "test", null, null));
+
+		this.problems = List.of(new Problem("test message", range, new RuntimeException("test exception")),
+				new Problem("test message2", range, new RuntimeException("test exception2")));
+	}
+
+	@Test
+	@Disabled
+	public void testSeparator() throws IOException {
+		ProblemOutputHandler handler = new ProblemOutputHandler(Files.newOutputStream(problemsFile.toPath()))
+				.separator('#')
+				.fullStacktrace(true);
+		handler.accept(file, problems);
+
+		String content = Files.readString(problemsFile.toPath());
+
+		assertEquals(TestUtils.readInternFile("handler/ProblemOutputSeparator.txt"), content);
+	}
+
+	@Test
+	@Disabled
+	public void testFullStacktrace() throws IOException {
+		ProblemOutputHandler handler = new ProblemOutputHandler(Files.newOutputStream(problemsFile.toPath()))
+				.fullStacktrace(true);
+		handler.accept(file, problems);
+
+		String content = Files.readString(problemsFile.toPath());
+
+		assertEquals(TestUtils.readInternFile("handler/ProblemOutputFullStacktrace.txt"), content);
+	}
+
+	@Test
+	public void test() throws IOException {
+		ProblemOutputHandler handler = new ProblemOutputHandler(Files.newOutputStream(problemsFile.toPath()));
+		handler.accept(file, problems);
+
+		String content = Files.readString(problemsFile.toPath());
+
+		assertEquals(TestUtils.readInternFile("handler/ProblemOutput.txt"), content);
+	}
+
+	@Test
+	public void testNonSuccessful() {
+		assertThrows(AssertionError.class, () -> new ProblemOutputHandler(null));
+	}
+}
