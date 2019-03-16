@@ -73,6 +73,7 @@ public class ProblemOutputHandler implements BiConsumer<File, List<Problem>> {
 	 * @param fullStacktrace
 	 *            new value
 	 * @return this instance
+	 * @since 1.0.0
 	 */
 	public ProblemOutputHandler fullStacktrace(boolean fullStacktrace) {
 		this.fullStacktrace = assertNotNull(fullStacktrace);
