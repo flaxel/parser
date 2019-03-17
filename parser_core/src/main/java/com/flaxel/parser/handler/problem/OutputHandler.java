@@ -13,7 +13,7 @@
  *	See the License for the specific language governing permissions and
  *	limitations under the License.
  */
-package com.flaxel.parser.handler;
+package com.flaxel.parser.handler.problem;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,7 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
  * @author flaxel
  * @since 1.0.0
  */
-public class ProblemOutputHandler implements BiConsumer<File, List<Problem>> {
+public class OutputHandler implements BiConsumer<File, List<Problem>> {
 
 	/**
 	 * any output stream to write data
@@ -62,7 +62,7 @@ public class ProblemOutputHandler implements BiConsumer<File, List<Problem>> {
 	 *            stream to write data
 	 * @since 1.0.0
 	 */
-	public ProblemOutputHandler(final OutputStream output) {
+	public OutputHandler(final OutputStream output) {
 		this.output = assertNotNull(output);
 		this.separator = Optional.empty();
 	}
@@ -75,7 +75,7 @@ public class ProblemOutputHandler implements BiConsumer<File, List<Problem>> {
 	 * @return this instance
 	 * @since 1.0.0
 	 */
-	public ProblemOutputHandler fullStacktrace(boolean fullStacktrace) {
+	public OutputHandler fullStacktrace(boolean fullStacktrace) {
 		this.fullStacktrace = assertNotNull(fullStacktrace);
 		return this;
 	}
@@ -88,7 +88,7 @@ public class ProblemOutputHandler implements BiConsumer<File, List<Problem>> {
 	 * @return this instance
 	 * @since 1.0.0
 	 */
-	public ProblemOutputHandler separator(String separator) {
+	public OutputHandler separator(String separator) {
 		this.separator = Optional.of(assertNonEmpty(separator));
 		return this;
 	}
@@ -101,7 +101,7 @@ public class ProblemOutputHandler implements BiConsumer<File, List<Problem>> {
 	 * @return this instance
 	 * @since 1.0.0
 	 */
-	public ProblemOutputHandler separator(char separator) {
+	public OutputHandler separator(char separator) {
 		separator(Character.toString(assertNotNull(separator)));
 		return this;
 	}

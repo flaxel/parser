@@ -1,4 +1,4 @@
-package com.flaxel.parser.handler;
+package com.flaxel.parser.handler.problem;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import com.flaxel.parser.handler.problem.OutputHandler;
 import com.flaxel.parser.utils.TestUtils;
 import com.github.javaparser.JavaToken;
 import com.github.javaparser.Position;
@@ -19,7 +20,7 @@ import com.github.javaparser.TokenRange;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ProblemOutputHandlerTest {
+public class OutputHandlerTest {
 
 	private File file;
 
@@ -46,7 +47,7 @@ public class ProblemOutputHandlerTest {
 	@Test
 	@Disabled
 	public void testSeparator() throws IOException {
-		ProblemOutputHandler handler = new ProblemOutputHandler(Files.newOutputStream(problemsFile.toPath()))
+		OutputHandler handler = new OutputHandler(Files.newOutputStream(problemsFile.toPath()))
 				.separator('#')
 				.fullStacktrace(true);
 		handler.accept(file, problems);
@@ -59,7 +60,7 @@ public class ProblemOutputHandlerTest {
 	@Test
 	@Disabled
 	public void testFullStacktrace() throws IOException {
-		ProblemOutputHandler handler = new ProblemOutputHandler(Files.newOutputStream(problemsFile.toPath()))
+		OutputHandler handler = new OutputHandler(Files.newOutputStream(problemsFile.toPath()))
 				.fullStacktrace(true);
 		handler.accept(file, problems);
 
@@ -70,7 +71,7 @@ public class ProblemOutputHandlerTest {
 
 	@Test
 	public void test() throws IOException {
-		ProblemOutputHandler handler = new ProblemOutputHandler(Files.newOutputStream(problemsFile.toPath()));
+		OutputHandler handler = new OutputHandler(Files.newOutputStream(problemsFile.toPath()));
 		handler.accept(file, problems);
 
 		String content = Files.readString(problemsFile.toPath());
@@ -80,6 +81,6 @@ public class ProblemOutputHandlerTest {
 
 	@Test
 	public void testNonSuccessful() {
-		assertThrows(AssertionError.class, () -> new ProblemOutputHandler(null));
+		assertThrows(AssertionError.class, () -> new OutputHandler(null));
 	}
 }
