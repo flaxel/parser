@@ -1,0 +1,21 @@
+@Override()
+public boolean equals(Object o) {
+    if (o == this)
+        return true;
+    if (!(o instanceof Test))
+        return false;
+    Test other = (Test) o;
+    if (!this.test1.equals(other.test1))
+        return false;
+    if (!java.util.Arrays.equals(this.test2, other.test2))
+        return false;
+    if (!java.util.Arrays.deepEquals(this.test3, other.test3))
+        return false;
+    if (Character.compare(this.test4, other.test4) != 0)
+        return false;
+    if (Integer.compare(this.test5, other.test5) != 0)
+        return false;
+    if (!this.test6.equals(other.test6))
+        return false;
+    return true;
+}
