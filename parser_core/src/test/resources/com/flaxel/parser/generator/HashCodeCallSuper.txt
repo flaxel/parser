@@ -1,0 +1,13 @@
+@Override()
+public int hashCode() {
+    final int PRIME = 59;
+    int result = 1;
+    result = (result * PRIME) + super.hashCode();
+    result = (result * PRIME) + test1.hashCode();
+    result = (result * PRIME) + java.util.Arrays.hashCode(test2);
+    result = (result * PRIME) + java.util.Arrays.deepHashCode(test3);
+    result = (result * PRIME) + Character.hashCode(test4);
+    result = (result * PRIME) + Integer.hashCode(test5);
+    result = (result * PRIME) + test6.hashCode();
+    return result;
+}
