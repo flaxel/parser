@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.flaxel.parser.handler.problem.OutputHandler;
 import com.flaxel.parser.utils.TestUtils;
 import com.github.javaparser.JavaToken;
 import com.github.javaparser.Position;
@@ -47,8 +46,7 @@ public class OutputHandlerTest {
 	@Test
 	@Disabled
 	public void testSeparator() throws IOException {
-		OutputHandler handler = new OutputHandler(Files.newOutputStream(problemsFile.toPath()))
-				.separator('#')
+		OutputHandler handler = new OutputHandler(Files.newOutputStream(problemsFile.toPath())).separator('#')
 				.fullStacktrace(true);
 		handler.accept(file, problems);
 
@@ -60,8 +58,7 @@ public class OutputHandlerTest {
 	@Test
 	@Disabled
 	public void testFullStacktrace() throws IOException {
-		OutputHandler handler = new OutputHandler(Files.newOutputStream(problemsFile.toPath()))
-				.fullStacktrace(true);
+		OutputHandler handler = new OutputHandler(Files.newOutputStream(problemsFile.toPath())).fullStacktrace(true);
 		handler.accept(file, problems);
 
 		String content = Files.readString(problemsFile.toPath());
@@ -82,5 +79,9 @@ public class OutputHandlerTest {
 	@Test
 	public void testNonSuccessful() {
 		assertThrows(AssertionError.class, () -> new OutputHandler(null));
+		assertThrows(AssertionError.class, () -> new OutputHandler(System.out).separator(""));
+		assertThrows(AssertionError.class, () -> new OutputHandler(System.out).separator(null));
+		assertThrows(AssertionError.class, () -> new OutputHandler(System.out).accept(null, problems));
+		assertThrows(AssertionError.class, () -> new OutputHandler(System.out).accept(file, List.of()));
 	}
 }

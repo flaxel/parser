@@ -24,6 +24,7 @@ import java.util.function.BiConsumer;
 
 import com.github.javaparser.Problem;
 
+import static com.flaxel.parser.utils.Utils.assertNonEmpty;
 import static com.github.javaparser.utils.Utils.assertNonEmpty;
 import static com.github.javaparser.utils.Utils.assertNotNull;
 
@@ -118,7 +119,7 @@ public class OutputHandler implements BiConsumer<File, List<Problem>> {
 	@Override
 	public void accept(File source, List<Problem> problems) {
 		assertNotNull(source);
-		assertNotNull(problems);
+		assertNonEmpty(problems);
 
 		StringBuilder builder = new StringBuilder(String.format("problems in the file: %s%n%n", source.getPath()));
 
