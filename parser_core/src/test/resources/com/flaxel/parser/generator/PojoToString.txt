@@ -1,0 +1,72 @@
+package java.parser.test;
+
+import java.util.List;
+import java.util.Arrays;
+
+public class Test {
+
+    private Object test1;
+
+    private double[] test2;
+
+    private Double[][] test3;
+
+    private char test4;
+
+    private int test5;
+
+    private List test6;
+
+    public void setTest1(Object test1) {
+        this.test1 = test1;
+    }
+
+    public Object getTest1() {
+        return test1;
+    }
+
+    public void setTest2(double[] test2) {
+        this.test2 = test2;
+    }
+
+    public double[] getTest2() {
+        return test2;
+    }
+
+    public void setTest3(Double[][] test3) {
+        this.test3 = test3;
+    }
+
+    public Double[][] getTest3() {
+        return test3;
+    }
+
+    public void setTest4(char test4) {
+        this.test4 = test4;
+    }
+
+    public char getTest4() {
+        return test4;
+    }
+
+    public void setTest5(int test5) {
+        this.test5 = test5;
+    }
+
+    public int getTest5() {
+        return test5;
+    }
+
+    public void setTest6(List test6) {
+        this.test6 = test6;
+    }
+
+    public List getTest6() {
+        return test6;
+    }
+
+    @Override()
+    public String toString() {
+        return "Test(test1=" + this.test1 + ", test2=" + Arrays.toString(this.test2) + ", test3=" + Arrays.deepToString(this.test3) + ", test4=" + this.test4 + ", test5=" + this.test5 + ", test6=" + this.test6 + ")";
+    }
+}
