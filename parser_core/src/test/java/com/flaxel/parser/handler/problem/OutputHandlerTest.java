@@ -52,7 +52,7 @@ public class OutputHandlerTest {
 
 		String content = Files.readString(problemsFile.toPath());
 
-		assertEquals(TestUtils.readInternFile("handler/ProblemOutputSeparator.txt"), content);
+		assertEquals(TestUtils.readInternFile("handler/problem/ProblemOutputSeparator.txt"), content);
 	}
 
 	@Test
@@ -63,7 +63,7 @@ public class OutputHandlerTest {
 
 		String content = Files.readString(problemsFile.toPath());
 
-		assertEquals(TestUtils.readInternFile("handler/ProblemOutputFullStacktrace.txt"), content);
+		assertEquals(TestUtils.readInternFile("handler/problem/ProblemOutputFullStacktrace.txt"), content);
 	}
 
 	@Test
@@ -73,7 +73,7 @@ public class OutputHandlerTest {
 
 		String content = Files.readString(problemsFile.toPath());
 
-		assertEquals(TestUtils.readInternFile("handler/ProblemOutput.txt"), content);
+		assertEquals(TestUtils.readInternFile("handler/problem/ProblemOutput.txt"), content);
 	}
 
 	@Test
