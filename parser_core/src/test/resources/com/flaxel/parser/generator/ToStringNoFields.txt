@@ -1,0 +1,4 @@
+@Override()
+public String toString() {
+    return "Test(" + this.test1 + ", " + java.util.Arrays.toString(this.test2) + ", " + java.util.Arrays.deepToString(this.test3) + ")";
+}
