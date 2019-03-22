@@ -1,0 +1,40 @@
+[ 65 -    69] Main
+[133 -   137] Main
+[162 -   166] Main
+[998 - 1.002] Main
+
+package de.falk.character;
+
+import java.util.Scanner;
+
+class Test {
+
+    public static void main(String[] args) {
+        new Test();
+    }
+
+    public Test() {
+        System.out.println("Hello World!");
+    }
+
+    private void sayHello() {
+        System.err.println("HELLO!!!");
+    }
+
+    public void help() {
+        System.out.println("Print a helpful message for all users!!!");
+    }
+
+    private void userInput() {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        System.out.println("The user input was: " + input);
+    }
+
+    private void saySomething() {
+        System.out.println("blablablablablablablablablablablablablablablablablablablablablablablablablabla");
+        System.out.println("blablablablablablablablablablablablablablablablablablablablablablablablablabla");
+        System.out.println("blablablablablablablablablablablablablablablablablablablablablablablablablabla");
+        System.out.println("Test");
+    }
+}
