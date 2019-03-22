@@ -1,0 +1,47 @@
+package de.flaxel.test;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.Objects;
+
+public class Main {
+
+	private String field1;
+
+	public Main(String field1) {
+		this.field1 = Objects.requireNonNull(field1);
+	}
+
+	public void setField1(String field1) {
+		this.field1 = Objects.requireNonNull(field1);
+	}
+
+	public String getField1() {
+		return field1;
+	}
+
+	private class Main2 {
+
+		protected Test field2;
+
+		public Main2() {
+			this.field2 = Test.TEST1;
+		}
+
+		public Test getField2() {
+			return field2;
+		}
+	}
+
+	enum Test {
+		TEST1,
+		TEST2;
+	}
+
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target({ ElementType.TYPE_USE, ElementType.TYPE_PARAMETER })
+	public @interface NonEmpty {
+	}
+}

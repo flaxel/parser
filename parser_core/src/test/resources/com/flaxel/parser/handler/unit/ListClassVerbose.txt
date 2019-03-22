@@ -1,0 +1,27 @@
+####################
+C:\Users\Falk\git\parser\parser_core\target\test-classes\com\flaxel\parser\handler\unit\ListClassSource.txt
+####################
+
+classes:
+	de.flaxel.test.Main
+	de.flaxel.test.Main.Main2
+
+constructors:
+	public Main(String field1)
+	public Main2()
+
+fields:
+	field1
+	field2
+
+methods:
+	public void setField1(String field1)
+	public String getField1()
+	public Test getField2()
+
+annotations:
+	de.flaxel.test.Main.NonEmpty
+
+enums:
+	Test [TEST1, TEST2]
+

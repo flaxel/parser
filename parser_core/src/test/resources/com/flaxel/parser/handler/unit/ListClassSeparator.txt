@@ -1,0 +1,27 @@
+%%%%%%%%%%%%%%%%%%%%
+ListClassSource.txt
+%%%%%%%%%%%%%%%%%%%%
+
+classes:
+	Main
+	Main2
+
+constructors:
+	Main(String field1)
+	Main2()
+
+fields:
+	private String field1;
+	protected Test field2;
+
+methods:
+	void setField1(String field1)
+	String getField1()
+	Test getField2()
+
+annotations:
+	NonEmpty
+
+enums:
+	Test 
+
