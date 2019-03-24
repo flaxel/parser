@@ -1,0 +1,19 @@
+package com.flaxel.parser.handler.unit;
+
+import java.util.Objects;
+
+public class ListMethodCallSource {
+
+	private String test1;
+
+	private String test2;
+
+	public ListMethodCallSource(String test1, String test2) {
+		this.test1 = Objects.requireNonNull(test1);
+		this.setTest2(test2);
+	}
+
+	public void setTest2(String test2) {
+		this.test2 = Objects.requireNonNull(test2);
+	}
+}
