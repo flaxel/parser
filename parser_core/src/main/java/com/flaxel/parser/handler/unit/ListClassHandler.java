@@ -165,6 +165,19 @@ public class ListClassHandler implements BiConsumer<File, CompilationUnit> {
 		}
 	}
 
+	/**
+	 * Add new content.
+	 * 
+	 * @param builder
+	 *            build a string
+	 * @param content
+	 *            upper class of the elements
+	 * @param list
+	 *            all elements
+	 * @param function
+	 *            create the visible content for one element
+	 * @since 1.0.0
+	 */
 	private <T> void executeIfNotEmpty(StringBuilder builder, String content, List<T> list,
 			Function<T, String> function) {
 		if (!list.isEmpty()) {
