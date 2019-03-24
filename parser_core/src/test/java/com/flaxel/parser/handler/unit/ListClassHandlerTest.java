@@ -60,8 +60,10 @@ public class ListClassHandlerTest {
 		File file = TestUtils.getInternFile("handler/unit/ListClassSource.txt");
 
 		assertThrows(AssertionError.class, () -> new ListClassHandler(null));
+
 		assertThrows(AssertionError.class, () -> new ListClassHandler(System.out).separator(""));
 		assertThrows(AssertionError.class, () -> new ListClassHandler(System.out).separator(null));
+
 		assertThrows(AssertionError.class, () -> new ListClassHandler(System.out).accept(file, null));
 		assertThrows(AssertionError.class,
 				() -> new ListClassHandler(System.out).accept(null, StaticJavaParser.parse(file)));

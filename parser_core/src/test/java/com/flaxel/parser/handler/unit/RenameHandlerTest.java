@@ -58,6 +58,8 @@ public class RenameHandlerTest {
 
 	@Test
 	public void testNonSuccessful() {
+		File file = TestUtils.getInternFile("handler/unit/RenameSource.txt");
+
 		assertThrows(AssertionError.class, () -> new RenameHandler("", (oldValue) -> "test"));
 		assertThrows(AssertionError.class, () -> new RenameHandler("test", null));
 
@@ -66,5 +68,9 @@ public class RenameHandlerTest {
 
 		assertThrows(AssertionError.class, () -> new RenameHandler(Pattern.compile("test"), null));
 		assertThrows(AssertionError.class, () -> new RenameHandler(System.out, Pattern.compile("test"), null));
+
+		assertThrows(AssertionError.class, () -> new RenameHandler("test", (oldValue) -> "test").accept(file, null));
+		assertThrows(AssertionError.class,
+				() -> new RenameHandler("test", (oldValue) -> "test").accept(null, StaticJavaParser.parse(file)));
 	}
 }

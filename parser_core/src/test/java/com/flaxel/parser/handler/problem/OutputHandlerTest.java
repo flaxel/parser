@@ -79,8 +79,10 @@ public class OutputHandlerTest {
 	@Test
 	public void testNonSuccessful() {
 		assertThrows(AssertionError.class, () -> new OutputHandler(null));
+
 		assertThrows(AssertionError.class, () -> new OutputHandler(System.out).separator(""));
 		assertThrows(AssertionError.class, () -> new OutputHandler(System.out).separator(null));
+
 		assertThrows(AssertionError.class, () -> new OutputHandler(System.out).accept(null, problems));
 		assertThrows(AssertionError.class, () -> new OutputHandler(System.out).accept(file, List.of()));
 	}
