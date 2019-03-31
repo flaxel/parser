@@ -2,7 +2,7 @@ problems in the file: test.java
 
 (line 1,col 1) test message
 Problem stacktrace : 
-  com.flaxel.parser.handler.ProblemOutputHandlerTest.setup(ProblemOutputHandlerTest.java:41)
+  com.flaxel.parser.handler.problem.OutputHandlerTest.setup(OutputHandlerTest.java:41)
   java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -64,7 +64,7 @@ Problem stacktrace :
 
 (line 1,col 1) test message2
 Problem stacktrace : 
-  com.flaxel.parser.handler.ProblemOutputHandlerTest.setup(ProblemOutputHandlerTest.java:42)
+  com.flaxel.parser.handler.problem.OutputHandlerTest.setup(OutputHandlerTest.java:42)
   java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
   java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
