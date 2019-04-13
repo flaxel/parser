@@ -8,9 +8,9 @@ import java.nio.file.Files;
 import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.flaxel.parser.handler.transform.RenameHandler;
 import com.flaxel.parser.utils.TestUtils;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.printer.YamlPrinter;
@@ -42,6 +42,7 @@ public class RenameHandlerTest {
 	}
 
 	@Test
+	@Disabled
 	public void testVerbose() throws IOException, URISyntaxException {
 		new RenameHandler(new FileOutputStream(target), "Main", (old) -> "Test").verbose(true)
 				.accept(source, StaticJavaParser.parse(source));
