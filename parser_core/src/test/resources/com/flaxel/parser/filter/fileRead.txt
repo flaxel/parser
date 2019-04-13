@@ -1,0 +1,10 @@
+public class Test {
+
+	private final String test = "test"; 
+
+	public static int i = 3;
+
+	public String getTest(){
+		return test;
+	}
+}
