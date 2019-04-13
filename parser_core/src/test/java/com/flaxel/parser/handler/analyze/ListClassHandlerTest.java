@@ -1,4 +1,4 @@
-package com.flaxel.parser.handler.unit;
+package com.flaxel.parser.handler.analyze;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.flaxel.parser.Parser;
+import com.flaxel.parser.handler.analyze.ListClassHandler;
 import com.flaxel.parser.utils.TestUtils;
 import com.github.javaparser.StaticJavaParser;
 
