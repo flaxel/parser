@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven 3.5.3
+Built-By: flaxel
+Build-Jdk: 11.0.1
+Implementation-Title: parser_cli
+Implementation-Version: 1.0.0-SNAPSHOT
+Implementation-Vendor-Id: com.flaxel
+Implementation-URL: https://github.com/flaxel/parser/parser_cli
+Main-Class: com.flaxel.parser.Main
