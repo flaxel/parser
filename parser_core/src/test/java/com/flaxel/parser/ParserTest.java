@@ -52,4 +52,22 @@ public class ParserTest {
 
 		Parser.createTypeSolver(file, folder, archive);
 	}
+
+	@Test
+	public void testCreateClassLoaderFile() throws IOException {
+		File file = TestUtils.getInternFile("Analyzed.txt");
+		File folder = TestUtils.getInternFile("analyzed");
+		File archive = TestUtils.getInternFile("Analyzed.zip");
+
+		Parser.createClassLoader(file, folder, archive);
+	}
+
+	@Test
+	public void testCreateClassLoaderPath() throws URISyntaxException, IOException {
+		Path file = TestUtils.getInternPath("Analyzed.txt");
+		Path folder = TestUtils.getInternPath("analyzed");
+		Path archive = TestUtils.getInternPath("Analyzed.zip");
+
+		Parser.createClassLoader(file, folder, archive);
+	}
 }
