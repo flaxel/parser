@@ -135,9 +135,10 @@ public class PojoGenerator implements Supplier<CompilationUnit> {
 		this.fieldTypes = assertNonEmpty(fieldTypes);
 		this.fieldNames = assertNonEmpty(fieldNames).stream()
 				.map(GenerationUtils::decapitalizeCamelCase)
+				.distinct()
 				.collect(Collectors.toList());
 
-		if (fieldTypes.size() != fieldNames.stream().distinct().count())
+		if (fieldTypes.size() != fieldNames.size())
 			throw new IllegalArgumentException("Types and fields must be the same size.");
 	}
 
