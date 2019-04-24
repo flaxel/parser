@@ -23,11 +23,13 @@ import picocli.CommandLine.Command;
  * @author flaxel
  * @since 1.0.0
  */
-@Command(name = "exit", aliases = "close", description = "Close the terminal")
+@Command(name = "exit", aliases = "close", description = "close the terminal")
 public class ExitCommand implements Runnable {
 
 	/**
 	 * Execute the command.
+	 * 
+	 * @since 1.0.0
 	 */
 	@Override
 	public void run() {

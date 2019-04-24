@@ -36,6 +36,7 @@ public class ManifestVersionProvider implements IVersionProvider {
 	 * Get the version information from the manifest.
 	 * 
 	 * @return version information
+	 * @since 1.0.0
 	 */
 	@Override
 	public String[] getVersion() throws Exception {
@@ -65,7 +66,8 @@ public class ManifestVersionProvider implements IVersionProvider {
 	 * @param manifest
 	 *            instance of a manifest
 	 * @return true if the manifest file can be used to get the version information,
-	 *         otherwise false.
+	 *         otherwise false
+	 * @since 1.0.0
 	 */
 	private boolean isApplicableManifest(Manifest manifest) {
 		Attributes attributes = manifest.getMainAttributes();
@@ -80,6 +82,7 @@ public class ManifestVersionProvider implements IVersionProvider {
 	 * @param key
 	 *            key for an attribute value
 	 * @return value of the attribute name
+	 * @since 1.0.0
 	 */
 	private String get(Attributes attributes, String key) {
 		return Objects.toString(attributes.get(new Attributes.Name(key)));

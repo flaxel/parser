@@ -25,11 +25,13 @@ import picocli.CommandLine.Command;
  * @author flaxel
  * @since 1.0.0
  */
-@Command(name = "clear", aliases = "cls", description = "Clears the screen")
+@Command(name = "clear", aliases = "cls", description = "clears the screen")
 public class ClearCommand implements Runnable {
 
 	/**
 	 * Execute the command.
+	 * 
+	 * @since 1.0.0
 	 */
 	@Override
 	public void run() {
