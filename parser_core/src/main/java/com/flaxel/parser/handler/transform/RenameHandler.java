@@ -19,20 +19,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
-import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
-import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
+import com.flaxel.parser.handler.analyze.FindHandler;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.printer.PrettyPrinter;
-import com.github.javaparser.utils.Utils;
 
 import static com.github.javaparser.utils.Utils.assertNonEmpty;
 import static com.github.javaparser.utils.Utils.assertNotNull;
@@ -198,24 +194,8 @@ public class RenameHandler implements BiConsumer<File, CompilationUnit> {
 				final OutputStream streamVerbose = outputVerbose.orElse(streamResult)) {
 
 			if (verbose) {
-				List<MatchResult> results = matcher.results().collect(Collectors.toList());
-
-				if (!results.isEmpty()) {
-					OptionalInt resultMaxStart = results.stream().mapToInt(MatchResult::start).max();
-					int maxStart = resultMaxStart.isPresent() ? String.format("%,d", resultMaxStart.getAsInt()).length()
-							: 4;
-
-					OptionalInt resultMaxEnd = results.stream().mapToInt(MatchResult::end).max();
-					int maxEnd = resultMaxEnd.isPresent() ? String.format("%,d", resultMaxEnd.getAsInt()).length() : 4;
-
-					for (MatchResult result : results) {
-						String info = String.format("[%," + maxStart + "d - %," + maxEnd + "d] %s%n", result.start(),
-								result.end(), result.group());
-						streamVerbose.write(info.getBytes());
-					}
-
-					streamVerbose.write(Utils.EOL.getBytes());
-				}
+				FindHandler findHandler = new FindHandler(streamVerbose, pattern).printer(printer);
+				findHandler.accept(source, unit);
 			}
 
 			streamResult.write(matcher.replaceAll((result) -> replacement.apply(result.group())).getBytes());
