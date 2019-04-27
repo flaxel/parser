@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>com.flaxel</groupId>
 		<artifactId>parser</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 
 	<artifactId>parser_cli</artifactId>
