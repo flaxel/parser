@@ -16,6 +16,7 @@
 package com.flaxel.parser.command;
 
 import com.flaxel.parser.Console;
+import com.flaxel.parser.Main;
 import com.flaxel.parser.command.utils.ClearCommand;
 import com.flaxel.parser.command.utils.ExitCommand;
 import com.flaxel.parser.command.utils.ManifestVersionProvider;
@@ -31,14 +32,15 @@ import picocli.CommandLine.Option;
  * @author flaxel
  * @since 1.0.0
  */
-@Command(name = "parser",
+@Command(name = Main.NAME,
 		header = { "@|green ______  _____   _______   ______  ____  _______ |@",
 			"@|green \\____ \\ \\__  \\  \\_  __ \\ /  ___/_/ __ \\ \\_  __ \\|@",
 			"@|green |  |_> > / __ \\_ |  | \\/ \\___ \\ \\  ___/  |  | \\/|@",
 			"@|green |   __/ (____  / |__|   /____  > \\___  > |__| |@",
 			"@|green |__|         \\/              \\/      \\/   |@", "" },
 		versionProvider = ManifestVersionProvider.class,
-		subcommands = { ClearCommand.class, ExitCommand.class })
+		subcommands = { AnalyzeCommand.class, GenerateCommand.class, TransformCommand.class, ClearCommand.class,
+			ExitCommand.class })
 public class ParserCommand implements Runnable {
 
 	/**
