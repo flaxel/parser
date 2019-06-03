@@ -1,0 +1,7 @@
+com.flaxel.parser
+com.flaxel.parser.filter
+com.flaxel.parser.generator
+com.flaxel.parser.handler.analyze
+com.flaxel.parser.handler.problem
+com.flaxel.parser.handler.transform
+com.flaxel.parser.utils
