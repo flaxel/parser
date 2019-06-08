@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=parser
+Exec=java -jar /opt/parser/parser_cli-1.0.0-jar-with-dependencies.jar
+Icon=/opt/parser/icon.png
+Terminal=true
