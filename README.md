@@ -161,7 +161,7 @@ sudo unzip parser.zip -d /opt/parser
 If you want to use the parser from the command line you can execute the following command:
 
 ```bash
-echo "alias parser='java -jar /opt/parser/parser_cli-1.0.0-jar-with-dependencies.jar'" >> ~/.bashrc
+echo "alias parser='java -jar /opt/parser/parser_cli-1.0.0-jar-with-dependencies.jar'" >> ~/.bash_aliases
 ```
 
 Or you can add the parser as application:
