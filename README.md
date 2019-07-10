@@ -121,25 +121,25 @@ You can find all [generators](https://flaxel.github.io/parser/v1/com/flaxel/pars
 
 ### Documentation
 
-There exists a javadoc documentation for the module `parser_core`. It is published on the branch gh-pages and can be accessed through this link https://flaxel.github.io/parser.
+There exists a java documentation for the module `parser_core`. It is published on the branch gh-pages and can be accessed through this link https://flaxel.github.io/parser.
 
 ## Compiling and Testing
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. First it is necessary to clone the project from the master branch.
 
-```
+```bash
 git clone https://github.com/flaxel/parser.git
 ```
 
 After that you can create all jars for the project.
 
-```
+```bash
 mvn clean install
 ```
 
 It is also possible to run all tests of the project. 
 
-```
+```bash
 mvn test
 ```
 
@@ -149,7 +149,7 @@ If you want to use the command line interface named `parser_cli`, please downloa
 
 ### Linux
 
-There are two possibilites to add the parser. But first you must install the parser:
+There are two possibilities to add the parser. But first you must install the parser:
 
 ```bash
 sudo mkdir /opt/parser
