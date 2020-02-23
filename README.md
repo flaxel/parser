@@ -1,5 +1,6 @@
 <p align="center"><img src="deployment/icon.png" alt="parser" height="150px"></p>
 
+[![Java_CI](https://github.com/flaxel/parser/workflows/Java_CI/badge.svg)](https://github.com/flaxel/parser/actions)
 [![GitHub release](https://img.shields.io/github/release/flaxel/parser.svg)](https://github.com/flaxel/parser/releases)
 [![Release](https://jitpack.io/v/flaxel/parser.svg)](https://jitpack.io/#flaxel/parser)
 [![License Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
