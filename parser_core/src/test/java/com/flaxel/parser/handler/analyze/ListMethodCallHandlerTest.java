@@ -7,7 +7,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.flaxel.parser.Parser;
@@ -34,7 +33,6 @@ public class ListMethodCallHandlerTest {
 	}
 
 	@Test
-	@Disabled
 	public void testIgnoringAnnotations() throws IOException, URISyntaxException {
 		new ListMethodCallHandler(new FileOutputStream(target)).ignoringAnnotations(true)
 				.accept(source, StaticJavaParser.parse(source));
@@ -44,7 +42,6 @@ public class ListMethodCallHandlerTest {
 	}
 
 	@Test
-	@Disabled
 	public void test() throws IOException, URISyntaxException {
 		new ListMethodCallHandler(new FileOutputStream(target)).accept(source, StaticJavaParser.parse(source));
 

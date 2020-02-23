@@ -39,7 +39,7 @@ public class FindHandlerTest {
 	public void testPrinter() throws IOException, URISyntaxException {
 		new FindHandler(new FileOutputStream(target), "Main").printer(new YamlPrinter(true)::output)
 				.accept(source, StaticJavaParser.parse(source));
-		assertEquals(Files.readAllLines(TestUtils.getInternPath("handler/unit/Findverbose.txt")),
+		assertEquals(Files.readAllLines(TestUtils.getInternPath("handler/unit/FindVerbose.txt")),
 				Files.readAllLines(target.toPath()));
 	}
 
